@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core'
 import { Title } from '@angular/platform-browser'
 import { RouterStateSnapshot, TitleStrategy } from '@angular/router'
 
-const AppName = 'my-ng-starter'
+const AppName = 'Quote App'
 
 @Injectable()
 export class CustomTitleStrategy extends TitleStrategy {

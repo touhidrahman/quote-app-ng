@@ -1,5 +1,5 @@
 {
-  "name": "my-ng-starter",
+  "name": "quote-app-ng",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -16,7 +16,7 @@
     "format": "npm run format:ts && npm run format:html",
     "ng-update": "ng update @angular/core @angular/cli @angular-eslint/schematics @schematics/angular --allow-dirty",
     "analyze:build": "ng build --stats-json",
-    "analyze:view": "webpack-bundle-analyzer ./dist/my-ng-starter/stats.json",
+    "analyze:view": "webpack-bundle-analyzer ./dist/quote-app-ng/stats.json",
     "analyze": "npm run analyze:build && npm run analyze:view"
   },
   "private": true,

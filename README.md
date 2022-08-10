@@ -1,4 +1,4 @@
-# my-ng-starter
+# quote-app-ng
 
 This starter uses:
 
