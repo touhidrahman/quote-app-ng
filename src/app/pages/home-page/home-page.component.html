@@ -42,5 +42,12 @@
             (authorSelect)="selectAuthor($event)"
             (pageChange)="authorPageChange($event)"
         ></app-author-list>
+
+        <app-tag-list
+            *ngIf="tagState.tags.value$ | async as tags"
+            [tags]="tags"
+            (tagSelect)="selectTag($event)"
+            class="mt-8"
+        ></app-tag-list>
     </div>
 </section>

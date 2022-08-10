@@ -1,0 +1,13 @@
+<div class="rounded bg-gray-50 p-4">
+    <h2 class="text-lg font-bold">Tags</h2>
+
+    <div>
+        <span
+            *ngFor="let tag of tags"
+            (click)="tagSelect.next(tag)"
+            class="mr-3 cursor-pointer text-sm text-gray-500 hover:font-bold"
+        >
+            {{ tag.name }}
+        </span>
+    </div>
+</div>
