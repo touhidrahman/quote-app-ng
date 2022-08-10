@@ -1,0 +1,17 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+:root {
+    --base-color: rgb(239, 68, 68);
+    --base-color-light: rgba(239, 68, 68, 0.2);
+}
+
+::-moz-selection {
+    /* Code for Firefox */
+    background: var(--base-color-light);
+}
+
+::selection {
+    background: var(--base-color-light);
+}
