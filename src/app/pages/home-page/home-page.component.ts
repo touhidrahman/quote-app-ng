@@ -1,19 +1,29 @@
 import { CommonModule } from '@angular/common'
 import { Component } from '@angular/core'
+import { Author } from '@core/interfaces'
+import { AuthorListComponent } from '@features/author/components/author-list/author-list.component'
+import { AuthorListStateService } from '@features/author/states/author-list-state.service'
 import { HeroQuoteComponent } from '@features/quote/components/hero-quote/hero-quote.component'
 import { QuoteItemComponent } from '@features/quote/components/quote-item/quote-item.component'
 import { QuoteStateService } from '@features/quote/states/quote-state.service'
 
 @Component({
     standalone: true,
-    imports: [CommonModule, HeroQuoteComponent, QuoteItemComponent],
+    imports: [CommonModule, HeroQuoteComponent, QuoteItemComponent, AuthorListComponent],
     templateUrl: './home-page.component.html',
     styleUrls: ['./home-page.component.scss'],
-    providers: [QuoteStateService],
+    providers: [QuoteStateService, AuthorListStateService],
 })
 export class HomePageComponent {
-    constructor(public quoteState: QuoteStateService) {}
+    constructor(public quoteState: QuoteStateService, public authorState: AuthorListStateService) {}
 
+    selectAuthor(author: Author) {
+        this.quoteState.author.next(author.slug)
+    }
+
+    authorPageChange(page: number) {
+        this.authorState.page.next(page)
+    }
     previousPage(currentPage: number) {
         const newPage = currentPage - 1
         if (newPage > 1) {

@@ -1,0 +1,19 @@
+<div class="rounded bg-gray-50 p-4">
+    <h2 class="text-lg font-bold">Authors</h2>
+
+    <div class="flex items-baseline justify-between" *ngFor="let author of authors">
+        <h2 (click)="authorSelect.next(author)" class="cursor-pointer text-gray-500 hover:font-bold">
+            {{ author.name }}
+        </h2>
+        <span class="rounded-full text-sm text-gray-500">{{ author.quoteCount }}</span>
+    </div>
+
+    <div class="flex items-baseline justify-between">
+        <p class="text-sm">Page {{ currentPage }} / {{ totalPages }}</p>
+
+        <div class="mt-6 flex items-center gap-4">
+            <button (click)="previousPage()">< Prev</button>
+            <button (click)="nextPage()">Next ></button>
+        </div>
+    </div>
+</div>

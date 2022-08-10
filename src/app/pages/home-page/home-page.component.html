@@ -33,5 +33,14 @@
         </div>
     </div>
 
-    <div class="col-span-2 lg:col-span-1">Authors and Tags</div>
+    <div class="col-span-2 lg:col-span-1">
+        <app-author-list
+            *ngIf="authorState.authorResponse.value$ | async as authorResponse"
+            [authors]="authorResponse.results"
+            [currentPage]="authorResponse.page"
+            [totalPages]="authorResponse.totalPages"
+            (authorSelect)="selectAuthor($event)"
+            (pageChange)="authorPageChange($event)"
+        ></app-author-list>
+    </div>
 </section>
