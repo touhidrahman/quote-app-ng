@@ -1,5 +1,11 @@
 <section class="mt-12 flex items-center justify-center">
-    <div class="container mx-auto">
-        <app-hero-quote [content]="'Welcome to Quote App'" [author]="'Random quote is loading...'"></app-hero-quote>
+    <div *ngIf="quoteState.randomQuote.value$ | async as randomQuote; else initialQuote" class="container mx-auto">
+        <app-hero-quote [content]="randomQuote.content" [author]="randomQuote.author"></app-hero-quote>
     </div>
+
+    <ng-template #initialQuote>
+        <div class="container mx-auto">
+            <app-hero-quote [content]="'Welcome to Quote App'" [author]="'Random quote is loading...'"></app-hero-quote>
+        </div>
+    </ng-template>
 </section>
