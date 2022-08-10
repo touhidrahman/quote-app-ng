@@ -43,18 +43,23 @@ export class QuoteStateService extends BasicPageState {
     }
 
     private init() {
-        // when any of the tag, author, limit, sortBy, page changes, fetch quotes
+        // when any of the tag, author, limit, sortBy, page, search changes, fetch quotes
         combineLatest({
             tag: this.tag.value$,
             author: this.author.value$,
             limit: this.limit.value$,
             sortBy: this.sortBy.value$,
             page: this.page.value$,
+            search: this.search.value$,
         })
             .pipe(
                 debounceTime(300), // debounce to prevent multiple requests without reasonable change
                 tap(() => this.loading.next(true)),
-                switchMap(({ tag, author, limit, sortBy, page }) => {
+                switchMap(({ tag, author, limit, sortBy, page, search }) => {
+                    if (search) {
+                        return this.quoteService.search(search, limit, page)
+                    }
+
                     return this.quoteService.listQuotes(author, [tag], [], sortBy, limit, page)
                 }),
                 takeUntil(this.destroyed),
@@ -64,6 +69,30 @@ export class QuoteStateService extends BasicPageState {
                     this.loading.next(false)
                     this.quoteSearchResponse.next(response)
                 },
+                error: () => {
+                    this.loading.next(false)
+                },
+                complete: () => {
+                    this.loading.next(false)
+                },
             })
+
+        // when a tag is selected, reset the page to 1 and the author & search to empty
+        this.tag.value$.subscribe({
+            next: () => {
+                this.page.next(1)
+                this.author.reset()
+                this.search.reset()
+            },
+        })
+
+        // when an author is selected, reset the page to 1 and the tag & search to empty
+        this.author.value$.subscribe({
+            next: () => {
+                this.page.next(1)
+                this.tag.reset()
+                this.search.reset()
+            },
+        })
     }
 }

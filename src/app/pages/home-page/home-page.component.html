@@ -9,3 +9,29 @@
         </div>
     </ng-template>
 </section>
+
+<section class="container mx-auto mt-12 mb-16 grid grid-cols-4 gap-8">
+    <div class="col-span-2 lg:col-span-3">
+        <div class="" *ngIf="quoteState.quoteSearchResponse.value$ | async as quoteSearchResponse">
+            <app-quote-item
+                class="mb-4"
+                [quote]="quote"
+                *ngFor="let quote of quoteSearchResponse.results"
+            ></app-quote-item>
+
+            <div class="flex items-baseline justify-between">
+                <p class="text-sm">
+                    {{ quoteSearchResponse.totalCount }} quotes found | Page {{ quoteSearchResponse.page }} /
+                    {{ quoteSearchResponse.totalPages }}
+                </p>
+
+                <div class="mt-6 flex items-center gap-4">
+                    <button (click)="previousPage(quoteSearchResponse.page)">< Prev</button>
+                    <button (click)="nextPage(quoteSearchResponse.page, quoteSearchResponse.totalPages)">Next ></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-span-2 lg:col-span-1">Authors and Tags</div>
+</section>

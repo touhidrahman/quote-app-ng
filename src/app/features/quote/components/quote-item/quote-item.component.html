@@ -1,0 +1,8 @@
+<div *ngIf="quote" class="rounded bg-gray-50 p-4">
+    <h2 class="mb-4 text-lg font-semibold text-green-500">{{ quote.author }}</h2>
+    <p>{{ quote.content }}</p>
+    <p class="mt-4 text-xs text-gray-400">
+        tags:
+        <span class="mr-2" *ngFor="let tag of quote.tags">{{ tag }}</span>
+    </p>
+</div>
