@@ -2,6 +2,7 @@ import { HttpClient, HttpParams } from '@angular/common/http'
 import { Inject, Injectable } from '@angular/core'
 import { AppConfig, APP_CONFIG } from '@core/config/app-config'
 import { Quote, QuoteSearchResponse } from '@core/interfaces'
+import { appendSafeLimitAndPage } from '@core/utils/safe-params'
 import { Observable } from 'rxjs'
 
 @Injectable({ providedIn: 'root' })
@@ -41,7 +42,7 @@ export class QuoteService {
         }
 
         params = params.append('sortBy', sortBy)
-        params = this.appendSafeLimitAndPage(params, limit, page)
+        params = appendSafeLimitAndPage(params, limit, page)
 
         return this.http.get<QuoteSearchResponse>(`${this.apiUrl}/quotes`, { params })
     }
@@ -49,18 +50,8 @@ export class QuoteService {
     search(term: string, limit = 20, page = 1): Observable<QuoteSearchResponse> {
         let params = new HttpParams()
         params = params.set('query', term)
-        params = this.appendSafeLimitAndPage(params, limit, page)
+        params = appendSafeLimitAndPage(params, limit, page)
 
         return this.http.get<QuoteSearchResponse>(`${this.apiUrl}/search/quotes`, { params })
-    }
-
-    private appendSafeLimitAndPage(params: HttpParams, limit: number, page: number): HttpParams {
-        const safeLimit = limit > 150 ? 150 : limit < 1 ? 20 : limit // allow 0 - 150, otherwise reset to 20
-        params = params.append('limit', safeLimit)
-
-        const safePage = page < 1 ? 1 : page // do not allow negative value
-        params = params.append('page', safePage)
-
-        return params
     }
 }
