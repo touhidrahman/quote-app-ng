@@ -5,7 +5,9 @@ import { Quote, QuoteSearchResponse } from '@core/interfaces'
 import { appendSafeLimitAndPage } from '@core/utils/safe-params'
 import { Observable } from 'rxjs'
 
-@Injectable({ providedIn: 'root' })
+@Injectable({
+    providedIn: 'root',
+})
 export class QuoteService {
     private apiUrl: string
 
