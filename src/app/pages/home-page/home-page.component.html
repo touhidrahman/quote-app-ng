@@ -10,6 +10,12 @@
     </ng-template>
 </section>
 
+<section class="mt-12 flex items-center justify-center">
+    <div class="container mx-auto">
+        <app-quote-searchbar (searchTermChange)="search($event)"></app-quote-searchbar>
+    </div>
+</section>
+
 <section class="container mx-auto mt-12 mb-16 grid grid-cols-4 gap-8">
     <div class="col-span-2 lg:col-span-3">
         <div class="" *ngIf="quoteState.quoteSearchResponse.value$ | async as quoteSearchResponse">
