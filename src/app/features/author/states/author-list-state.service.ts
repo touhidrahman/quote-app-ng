@@ -22,6 +22,7 @@ export class AuthorListStateService extends BasicPageState {
     }
 
     private init(): void {
+        // on change page no, load new authors
         this.page.value$
             .pipe(
                 tap(() => this.loading.next(true)),

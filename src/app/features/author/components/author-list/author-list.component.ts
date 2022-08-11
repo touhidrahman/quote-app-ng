@@ -1,11 +1,12 @@
 import { CommonModule } from '@angular/common'
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core'
 import { Author } from '@core/interfaces'
+import { ButtonComponent } from '@shared/button/button.component'
 
 @Component({
     selector: 'app-author-list',
     standalone: true,
-    imports: [CommonModule],
+    imports: [CommonModule, ButtonComponent],
     templateUrl: './author-list.component.html',
     styleUrls: ['./author-list.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,

@@ -22,7 +22,7 @@ export class TagListStateService extends BasicState {
     private init(): void {
         of(1)
             .pipe(
-                tap(() => this.loading.next(true)),
+                tap(() => this.loading.next(true)), // to show loading spinner
                 switchMap(() => this.tagService.getTags('quoteCount')),
                 takeUntil(this.destroyed),
             )

@@ -30,6 +30,7 @@ export class QuoteStateService extends BasicPageState {
     }
 
     private pollRandomQuote() {
+        // poll for a random quote every 10 seconds
         interval(10_000)
             .pipe(
                 switchMap(() => this.quoteService.getRandomQuote()),

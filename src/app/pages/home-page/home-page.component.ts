@@ -9,6 +9,7 @@ import { QuoteSearchbarComponent } from '@features/quote/components/quote-search
 import { QuoteStateService } from '@features/quote/states/quote-state.service'
 import { TagListComponent } from '@features/tag/components/tag-list/tag-list.component'
 import { TagListStateService } from '@features/tag/states/tag-list-state.service'
+import { ButtonComponent } from '@shared/button/button.component'
 
 @Component({
     standalone: true,
@@ -19,6 +20,7 @@ import { TagListStateService } from '@features/tag/states/tag-list-state.service
         AuthorListComponent,
         TagListComponent,
         QuoteSearchbarComponent,
+        ButtonComponent,
     ],
     templateUrl: './home-page.component.html',
     styleUrls: ['./home-page.component.scss'],
@@ -46,6 +48,7 @@ export class HomePageComponent {
     authorPageChange(page: number) {
         this.authorState.page.next(page)
     }
+
     previousPage(currentPage: number) {
         const newPage = currentPage - 1
         if (newPage > 1) {

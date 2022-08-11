@@ -32,8 +32,10 @@
                 </p>
 
                 <div class="mt-6 flex items-center gap-4">
-                    <button (click)="previousPage(quoteSearchResponse.page)">< Prev</button>
-                    <button (click)="nextPage(quoteSearchResponse.page, quoteSearchResponse.totalPages)">Next ></button>
+                    <button appButton (click)="previousPage(quoteSearchResponse.page)">< Prev</button>
+                    <button appButton (click)="nextPage(quoteSearchResponse.page, quoteSearchResponse.totalPages)">
+                        Next >
+                    </button>
                 </div>
             </div>
         </div>
