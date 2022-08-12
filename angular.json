@@ -8,9 +8,7 @@
             "path": ".cache",
             "environment": "all"
         },
-        "schematicCollections": [
-          "@angular-eslint/schematics"
-        ],
+        "schematicCollections": ["@angular-eslint/schematics"],
         "analytics": false
     },
     "projects": {
@@ -22,21 +20,21 @@
                 },
                 "@schematics/angular:component": {
                     "style": "scss",
-                    "skipTests": true,
+                    "skipTests": false,
                     "displayBlock": true,
                     "standalone": true
                 },
                 "@schematics/angular:class": {
-                    "skipTests": true
+                    "skipTests": false
                 },
                 "@schematics/angular:directive": {
-                    "skipTests": true
+                    "skipTests": false
                 },
                 "@schematics/angular:pipe": {
-                    "skipTests": true
+                    "skipTests": false
                 },
                 "@schematics/angular:service": {
-                    "skipTests": true
+                    "skipTests": false
                 }
             },
             "root": "",
@@ -112,22 +110,35 @@
                     "options": {
                         "lintFilePatterns": ["src/**/*.ts", "src/**/*.html"]
                     }
+                },
+                "test": {
+                    "builder": "@angular-devkit/build-angular:karma",
+                    "options": {
+                        "main": "src/test.ts",
+                        "polyfills": "src/polyfills.ts",
+                        "tsConfig": "tsconfig.spec.json",
+                        "karmaConfig": "karma.conf.js",
+                        "inlineStyleLanguage": "scss",
+                        "assets": ["src/favicon.ico", "src/assets"],
+                        "styles": ["src/styles/styles.scss"],
+                        "scripts": []
+                    }
                 }
             }
         }
     },
     "schematics": {
         "@schematics/angular:component": {
-            "skipTests": true
+            "skipTests": false
         },
         "@schematics/angular:service": {
-            "skipTests": true
+            "skipTests": false
         },
         "@schematics/angular:pipe": {
-            "skipTests": true
+            "skipTests": false
         },
         "@schematics/angular:guard": {
-            "skipTests": true
+            "skipTests": false
         }
     }
 }
